@@ -1,4 +1,36 @@
-table, tr, td {
-   color: #00008B;
-   border: 1px solid black;
+body {
+background-image: url(../images/AUhPCe6-forest-green-background.jpg);
+background-size:     cover;
+background-repeat:   no-repeat;
+}
+
+p {
+margin: 0 auto;
+}
+
+h1 {
+margin: 0 auto;
+}
+
+.grid-container {
+position: relative;
+top: 50px;
+left: 50px;
+}
+
+table {
+border-spacing:0;
+}
+
+tr, td {
+width : 100px;
+height : 100px;
+background-image: url(../images/wood_tile.JPG);
+background-size:     cover;
+background-repeat:   no-repeat;
+border: 1px solid black;
+}
+
+.pit {
+background-image: url(../images/pit.png); 
 }
