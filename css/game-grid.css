@@ -1,5 +1,5 @@
 body {
-background-image: url(../images/AUhPCe6-forest-green-background.jpg);
+background-image: url(../images/z7t3ZFi-forest-green-background.jpg);
 background-size:     cover;
 background-repeat:   no-repeat;
 }
@@ -12,13 +12,8 @@ h1 {
 margin: 0 auto;
 }
 
-.grid-container {
-position: relative;
-top: 50px;
-left: 50px;
-}
-
 table {
+    margin: 0 auto;
 border-spacing:0;
 }
 
