@@ -1,5 +1,5 @@
 body {
-background-image: url(../images/z7t3ZFi-forest-green-background.jpg);
+background-image: url(../images/forest-green-background.jpg);
 background-size:     cover;
 background-repeat:   no-repeat;
 }
@@ -13,19 +13,19 @@ margin: 0 auto;
 }
 
 table {
-    margin: 0 auto;
+margin: 0 auto;
 border-spacing:0;
 }
 
 tr, td {
 width : 100px;
 height : 100px;
-background-image: url(../images/wood_tile.JPG);
+background-image: url(../images/wood-tile.JPG);
 background-size:     cover;
 background-repeat:   no-repeat;
 border: 1px solid black;
 }
 
 .pit {
-background-image: url(../images/pit.png); 
+background-image: url("../images/wood-tile2.jpg");
 }
