@@ -1,121 +1,127 @@
 <html>
-    
-    <head>
-        <title>Preliminary Software Design</title>
-        <LINK href="../css/main.css" rel="stylesheet" type="text/css">
-    </head>
-    
-    <body>
-        </br>
-        </br>
-        </br>
-        </br>
-        <div class = "container">
-        <h2>Preliminary Software Design</h2>
-        
-        <b>Model</b>
-            
-        <ul>Constants
-            <li>MAX_MOVES - The maximum number of moves that a player may  make in one turn</li>
-        </ul>
-        
-            
-            
-        <b>Ranks</b>
-        <table>
-            <tr>
-                <td>Elephant</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>Camel</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Horse</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>Dog</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>Cat</td>
-                <td>5</td>
-            </tr>
-               <tr>
-                <td>Rabbit</td>
-                <td>6</td>
-            </tr>   
-        </table>    
-            
-        # of each piece
-            
-        <br>
-        <hr>
-        <b>Objects:</b>
-            
-            <b>Piece :</b>
-            <ul>
-            <li>Rank</li>
-            <li>Loyalty</li>
-            <li>Location</li>
-            <li>Actions</li>
-            <li>Moves</li>
-            <li>Friendly nearby</li>
-            </ul>
-            <p>
-                
-        Example : 
-                <li> {"rank": 2, "loyalty" : "black", location": "C3", "actions" : ["push", "pull"],
-            "moves": ["up","down","left"], "friendlyNearby" : "true"}</li>
-           <li>{"rank": 5, "loyalty" : "white", location": "D2", "actions" : ["pull"], moves": ["up","left",       "right"], "friendlyNearby" : "false"}</li>
-            
-        
-            </p>
-            
-        <b>Player :</b>
-        <ul>
-        <li>name: string The name that is displayed for the player</li>
-        <li>remaining moves : integer The number of moves left that the player may make</li>
-        <li>canMovePiece : boolean. flag that signifies whether the player has movable pieces</li>
-        <li>remainingRabbits : integer Number of rabbits left</li>
-        </ul>
-         
-        <b>Game :</b>
-            <ul>
-                <li>Pieces: Array of all pieces to track current game state</li>
-                <li>turn: string Black or white to signify which player has the turn</li>
-                <li> evalauate : function. Evaluate whether a win/lose condition applies.</li>
-                <li> Pits : Array of pit locations
-            ["C3", "F3", "C6", "F6" ]   </li>
-                <li>Initial Tiles : Array of locations that players may place their pieces during game setup</li>
-            </ul>
-              
-        <br>
-        <hr> 
-        <b>Functions:</b>
-        <ul>
-            <li>addPiece()
-        Takes a piece and a location as parameters and create a new entry in the pieces array</li>
-            <li>removePiece()
-        Takes a location as a parameter and removes the piece from that location from the pieces array</li>
-            <li>pass()
-        Passes the turn to the other player as long as the remaining moves of the current player is less than 4</li>
-            <li>evaluate()
-        Takes a piece as a paramater. Evaluates possible moves and actions and adjusts as necessary</li>
-            <li>push()
-        Takes as a parameter the piece to be moved and the location to move it to. Updates the piece's location as well as the pushing piece.</li>
-                <li>pull()
-        Takes as a parameter the piece to be moved and the location to move the pulling piece to. Updates location of both pieces</li>
-        </ul>
-        
-
-        </div>
-        
-        
-        
-    </body>
-
-
+	<head>
+		<title>Preliminary Software Design</title>
+		<LINK href="../css/main.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		</br>
+		</br>
+		</br>
+		</br>
+		<div class = "content">
+			<h1>Preliminary Software Design</h1>
+			<h2>Model</h2>
+			Constants
+			<ul>
+				<li>MAX_MOVES - The maximum number of moves that a player may  make in one turn</li>
+			</ul>
+			<b>Ranks</b>
+			<table>
+				<tr>
+					<td>Elephant</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Camel</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>Horse</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>Dog</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>Cat</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Rabbit</td>
+					<td>6</td>
+				</tr>
+			</table>
+			<br>
+			<b># of each piece</b>
+			<table>
+				<tr>
+					<td>Elephant</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Camel</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Horse</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>Dog</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>Cat</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>Rabbit</td>
+					<td>8</td>
+				</tr>
+			</table>
+			<br>
+			<b>Objects:</b>
+			<hr>
+			<b>Piece :</b>
+			<ul>
+				<li>rank - Some pieces are stronger than others</li>
+				<li>loyalty - Piece must be black or white</li>
+				<li>location - Alphanumeric location of the piece on the grid</li>
+				<li>actions - Array of actions that are available to the piece (push, pull, move)</li>
+				<li>moves - Directions that the piece is allowed to move in on this turn</li>
+				<li>friendlyNeighbor - Boolean signifying whether this piece is adjacent to a friendly piece</li>
+			</ul>
+			Examples : 
+			<ul>
+				<li> {"rank": 2, "loyalty" : "black", location": "C3", "actions" : ["push", "pull"],
+					"moves": ["up","down","left"], "friendlyNeighbor" : "true"}
+				</li>
+				<li>{"rank": 5, "loyalty" : "white", location": "D2", "actions" : ["pull"], moves": ["up","left",       "right"], "friendlyNeighbor" : "false"}</li>
+			</ul>
+			<br>
+			<b>Player :</b>
+			<ul>
+				<li>name: string The name that is displayed for the player</li>
+				<li>moves : integer The number of moves left that the player may make</li>
+				<li>canMove : boolean. flag that signifies whether the player has movable pieces</li>
+				<li>rabbits : integer Number of rabbits left</li>
+			</ul>
+			Examples:
+			<ul>
+				<li>{"name": "Jeremy", "moves": 3, "canMove": true, "rabbits": 5"}</li>
+			</ul>
+			<b>Game :</b>
+			<ul>
+				<li>pieces: Array of all pieces to track current game state</li>
+				<li>turn: string Black or white to signify which player has the turn</li>
+				<li>evaluate : function. Evaluate whether a win/lose condition applies.</li>
+				<li>pits : Array of pit locations
+					["C3", "F3", "C6", "F6" ]   
+				</li>
+				<li>initialTiles : Array of locations that players may place their pieces during game setup</li>
+			</ul>
+			<br>
+			<b>Functions:</b>
+			<hr>
+			<ul>
+				<li>addPiece() - Takes a piece and a location as parameters and create a new entry in the pieces array</li>
+				<li>removePiece() - Takes a location as a parameter and removes the piece from that location from the pieces array</li>
+				<li>pass() - Passes the turn to the other player as long as the remaining moves of the current player is less than 4</li>
+				<li>evaluate() - Takes a piece as a paramater. Evaluates possible moves and actions and adjusts as necessary</li>
+				<li>push() - Takes as a parameter the piece to be moved and the location to move it to. Updates the piece's location as well as the pushing piece.</li>
+				<li>pull() - Takes as a parameter the piece to be moved and the location to move the pulling piece to. Updates location of both pieces</li>
+			</ul>
+		</div>
+	</body>
 </html>

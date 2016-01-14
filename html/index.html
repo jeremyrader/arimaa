@@ -1,36 +1,78 @@
 <html>
-
-    <head>
-        <title>Description Page</title>
-        <LINK href="../css/main.css" rel="stylesheet" type="text/css">
-    </head>
-
-    <body>
-        <div class = "centerpiece">
-            <table class = "centerpiece">
-                <tr>
-                    <td><img src ="../images/b-1-elephant.svg">
-                    </td>
-                    <td><img src = "../images/w-1-elephant.svg">
-                    </td>
-                </tr>
-            </table>
-            <h2><a href="game-grid.html" target="_blank">Play Arimaa</a> </h2>
-        </div>
-        <br/>
-        <br/>
-        <div class = "container">
-        <h1>Arimaa</h1>
-        <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, <p><a href = "http://arimaa.com/arimaa/">Arimaa Homepage</a></p>cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
-
-<a href = "preliminary-software-design.html" target = "_blank">Preliminary Software Design</a>
-<a href = "acknowledgements.html" target = "_blank">Acknowledgments</a>
-
-        </div>
-
-    </body>
-
-
+	<head>
+		<title>Description Page</title>
+		<LINK href="../css/main.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class = "container">
+			<div class = "header">
+				<table>
+					<tr>
+						<td><img src ="../images/b-1-elephant.svg">
+						</td>
+						<td><img src = "../images/w-1-elephant.svg">
+						</td>
+					</tr>
+				</table>
+				<div class="play">
+					<a class = "playlink" href="game-grid.html" target="_blank">PLAY</a>
+				</div>
+			</div>
+			<br>
+			<div class = "content">
+				<div class ="navbar">
+					<a href = "preliminary-software-design.html" target = "_blank">Preliminary Software Design</a>
+					<a href="acknowledgements.html" target="_blank">Acknowledgments</a>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<h1>Arimaa Game Rules</h1>
+				<div class ="short">
+					<h3>Objective</h3>
+					<p>Be the first player to get a rabbit to the other side of the board.</p>
+					<h3>Setup</h3>
+					<p>Each player take turns placing their pieces in any arrangement in the first two rows in front of them. Black goes first, then white.</p>
+					<h3>Game Play</h3>
+					<p>Players take turns moving their pieces with black going first. On each turn a player can move the pieces a total of four steps.
+						A piece can take multiple steps and also change directions after each step. The steps may be distributed among multiple pieces so that up to four pieces can be moved. A player may pass some of the steps, but may not pass the whole turn or make a move equivalent to passing the whole turn.
+					</p>
+				</div>
+				<h3>Step</h3>
+				<p><b>Move</b> - Stronger pieces may move a weaker piece from its current square to the next adjacent square.
+					All pieces move the same way: in orthogonal directions (like rooks in chess) forward, backward, left and right. But the rabbits cannot move backward (like pawns in chess)
+				</p>
+				<br>
+				<p><b>Push</b> - The stronger pieces can move opponent's weaker pieces. For example your dog can move the opponent's cat or  rabbit, but not the opponent's dog or any other piece that is stronger than it. The opponent's piece must be orthogonally adjacent to your piece and can be moved by either pushing or pulling it. To push an opponent's piece with your stronger piece, first move the opponent's piece to one of the empty orthogonally adjacent squares and then move your piece into its place.</p>
+				<br>
+				<p><b>Pull</b> - To pull an opponent's piece with your stronger piece, first move your piece to one of the unoccupied adjacent squares and then move the opponent's piece into the square that was just vacated. Although rabbits cannot move backwards on their own, they may be pushed or pulled back. A push or pull requires two consecutive steps and must be completed within the same turn. Any combination of pushing and pulling can be done in the same turn. </p>
+				<br>
+				<h3>Notes</h3>
+				<p>
+				<ul>
+					<li>A piece may not push one piece while simulaneously pulling another</li>
+					<li>A piece which is next to an opponent's stronger piece is considered to be frozen and cannot move on its own.However if there is a friendly piece next to it the piece is unfrozen and is free to move.</li>
+					<li>Any piece that is on a trap square is immediately removed from the game unless there is a friendly piece next to the trap square to keep it safe.</li>
+				</ul>
+				<h3>Win/Lose Conditions</h3>
+				<p> 
+					The order of checking for win/lose conditions is as follows assuming player A just made the move and player B now needs to move:
+				</p>
+				<ul>
+					<li>Check if a rabbit of player A reached goal. If so player A wins.</li>
+					<li>Check if a rabbit of player B reached goal. If so player B wins.</li>
+					<li>Check if player B lost all rabbits. If so player A wins.</li>
+					<li>Check if player A lost all rabbits. If so player B wins.</li>
+					<li>Check if player B has no possible move (all pieces are frozen or have no place to move). If so player A wins.</li>
+					<li>Check if the only moves player B has are 3rd time repetitions. If so player A wins.</li>
+				</ul>
+				<p>More detailed rules can be found at the <a href ="http://arimaa.com/arimaa/learn/rulesIntro.html">Arimaa homepage</a></p>
+			</div>
+		</div>
+	</body>
 </html>
-
-

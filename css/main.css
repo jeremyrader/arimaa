@@ -1,22 +1,79 @@
 body {
-background-color : #F3F4EC;
+    background-image : url(../images/natural-tan-canvas-fabric-texture.jpg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
 }
 
-.centerpiece {
-    width : 600px;
-margin : 0 auto;
-    text-align : center;
+h1, h3 {
+    text-align: center;
 }
 
 img {
-width : 300px;
-display: block;
-margin-left: auto;
-margin-right: auto;
+    width : 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    display: block;
+    margin : 0 auto;
+}
+
+.play {
+    border-radius: 25px;
+    padding: 1px;
+    background-color : darkgreen;
+    width : 100px;
+    display: block;
+    margin : 0 auto;
+}
+
+.play a {
+    text-decoration: none;
+    color : white;
+    font-size: 24px;
+}
+
+.short {
+    text-align: center;   
+}
+
+.header {
+    padding: 0 15px;
+    width: 600px;
+    margin : 0 auto;
+    text-align : center;
 }
 
 .container {
-width : 500px;
-display: block;
-margin : 0 auto   
+    padding: 5px;
+	margin: 0 auto;
+}
+
+.content {
+    border : solid black 10px;
+    border-radius: 25px;
+    padding: 50px;
+    background-color : white;
+    width : 1000px;
+    display: block;
+    margin : 0 auto   
+}
+
+.navbar {
+    width : 600px;
+    display: inline;
+    margin : 0 auto; 
+    text-align: center;
+}
+
+.navbar a {
+    white-space: nowrap;
+    color : white;
+    text-decoration: none;
+    padding: 10px;
+    border : solid black 5px;
+    border-radius: 25px;
+    background-color : black;
 }
