@@ -29,3 +29,8 @@ tr, td {
 .pit {
     background-image: url("../images/wood-tile2.jpg");
 }
+
+.square {
+    border : 5px solid gold;
+    border-style : groove;
+}
