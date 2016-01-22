@@ -30,7 +30,12 @@ tr, td {
     background-image: url("../images/wood-tile2.jpg");
 }
 
-.square {
+.move {
     border : 5px solid gold;
+    border-style : groove;
+}
+
+.interact {
+    border : 5px solid aqua;
     border-style : groove;
 }
