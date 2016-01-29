@@ -1,36 +1,3 @@
-var locations = {
-    
-    "A8" : { loyalty : 'b', rank : '6' },
-    "B8" : { loyalty : 'b', rank : '6' },
-    "B7" : { loyalty : 'b', rank : '5' },
-    "D7" : { loyalty : 'w', rank : '2' },
-    "B7" : { loyalty : 'b', rank : '5' },
-    "E6" : { loyalty : 'b', rank : '6' },
-    "G6" : { loyalty : 'b', rank : '6' },
-    "H6" : { loyalty : 'b', rank : '6' },
-    "C5" : { loyalty : 'b', rank : '6' },
-    "F5" : { loyalty : 'w', rank : '1' },
-    "E4" : { loyalty : 'b', rank : '5' },
-    "F4" : { loyalty : 'w', rank : '3' },
-    "G4" : { loyalty : 'b', rank : '1' },
-    "B3" : { loyalty : 'w', rank : '4' },
-    "E3" : { loyalty : 'w', rank : '3' },
-    "F3" : { loyalty : 'b', rank : '6' },
-    "G3" : { loyalty : 'w', rank : '6' },
-    "A2" : { loyalty : 'w', rank : '6' },
-    "E2" : { loyalty : 'w', rank : '5' },
-    "F2" : { loyalty : 'b', rank : '2' },
-    "G2" : { loyalty : 'w', rank : '6' },
-    "H2" : { loyalty : 'b', rank : '6' },
-    "A1" : { loyalty : 'w', rank : '6' },
-    "B1" : { loyalty : 'w', rank : '6' },
-    "E1" : { loyalty : 'w', rank : '6' },
-    "F1" : { loyalty : 'w', rank : '6' },
-    "G1" : { loyalty : 'b', rank : '4' },
-    "H1" : { loyalty : 'w', rank : '6' },
-}
-
-
 function showGameBoard() {
     var gameGrid = document.getElementById('game-grid');
     gameGrid.innerHTML = generateTable(8,8);
@@ -68,7 +35,9 @@ function generateColumn(columns, number) {
 
         var location = String.fromCharCode(96 + i).toUpperCase() + number;
 
-        //Change the class of these 4 squares to create pits
+        td = addId(td, location);
+
+         //Change the class of these 4 squares to create pits
         if (location === 'C3' || location === 'F3' || location === 'C6' || location === 'F6') {
             td = addClass(td, 'pit');
         }
@@ -88,24 +57,13 @@ function generateColumn(columns, number) {
         }
         //==========================================================================================
 
-        column += td + generateGamePieceImg(location) + '</td>';
+        column += td + '</td>';
     }
 
     return column;
 }
 
-function generateGamePieceImg(location) {
 
-    var gamePieceImg = '';
-
-    var square = locations[location];
-    
-    if (square !== undefined) {
-        gamePieceImg = '<img src=\"../images/' + square.loyalty + '-' + square.rank + '.svg\" width=100% height=100%">';
-    }
-    
-    return gamePieceImg;
-}
 
 function addClass(element, className) {
     
@@ -126,5 +84,12 @@ function addClass(element, className) {
 }
 
 
+function addId(element, id) {
+
+    var tagFragments = element.split('>');
+
+    return tagFragments[0] + ' id=\"' + id + '\">';
+
+}
 
 
