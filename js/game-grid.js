@@ -1,6 +1,10 @@
 function showGameBoard() {
     var gameGrid = document.getElementById('game-grid');
     gameGrid.innerHTML = generateTable(8,8);
+
+    Game.init(8,8);
+    Game.evaluate('B8');
+
 }
 
 
@@ -91,5 +95,3 @@ function addId(element, id) {
     return tagFragments[0] + ' id=\"' + id + '\">';
 
 }
-
-
