@@ -39,3 +39,50 @@ tr, td {
     border : 5px solid aqua;
     border-style : groove;
 }
+
+#pagewrap {
+	padding: 5px;
+	width: 100%;
+	margin: 20px auto;
+}
+
+#content {
+	width: 300px;
+    height : 735px;
+	float: left;
+    border : solid black 10px;
+    border-radius: 25px;
+    padding: 50px;
+    background-color : white;
+    display: block;
+    margin : 0 auto;  
+}
+
+#sidebar {
+	width: 300px;
+    height : 735px;
+	float: left;
+    border : solid black 10px;
+    border-radius: 25px;
+    padding: 50px;
+    background-color : white;
+    display: block;
+    margin : 0 auto; 
+}
+
+.grid-container {
+	width: 960px; /* Account for margins + border values */
+	float: left;
+	padding: 5px 15px;
+	margin: 0px 5px 5px 5px;
+}
+
+header {
+	height: 100px;
+	padding: 0 15px;
+}
+
+footer {
+	clear: both;
+	padding: 0 15px;
+}
