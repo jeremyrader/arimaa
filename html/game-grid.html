@@ -5,26 +5,24 @@
         <script src="../js/game-grid.js"></script>
         <script src="../js/model.js"></script>
 	</head>
-	<body onload = "showGameBoard()">
+	<body onload = "renderGameBoard()">
         
-        <div id="pagewrap">
+        <div id="container">
 
 	<header>
+        <div id = "elephants-div">
+            <img id = "white-elephant-img" src="../images/w-1.svg" width=100px height=100px>
+            <img id = "black-elephant-img" src="../images/b-1.svg" width=100px height=100px>
+        </div>
 	</header>
 		
 	<section id="content">
-		<h2>1st Content Area</h2>
-		<p>This page demonstrates a 3 column responsive layout, complete with responsive images and jquery slideshow.</p>
 	</section>
 	
 	<div id = "game-grid" class = "grid-container">
 	</div>
 
-	<aside id="sidebar">
-		<h2>3rd Content Area</h2>
-		<p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-		<p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+	<aside id="sidebar">  
 	</aside>
 	
 	<footer>

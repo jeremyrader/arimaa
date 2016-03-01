@@ -40,7 +40,7 @@ tr, td {
     border-style : groove;
 }
 
-#pagewrap {
+#container {
 	padding: 5px;
 	width: 100%;
 	margin: 20px auto;
@@ -58,7 +58,7 @@ tr, td {
     margin : 0 auto;  
 }
 
-#sidebar {
+#game-setup {
 	width: 300px;
     height : 735px;
 	float: left;
@@ -86,3 +86,21 @@ footer {
 	clear: both;
 	padding: 0 15px;
 }
+
+.play {
+    border-radius: 25px;
+    border: solid black 10px;
+    padding: 1px;
+    width : 200px;
+    display: block;
+    margin : 0 auto;
+}
+
+.play button {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+#elephants-div {position: relative; top: 0; left: 0; height: 100;}
+#white-elephant-img {position: relative; top: 0; left: 804; }
+#black-elephant-img {position: relative; top: 0; left: 804; }

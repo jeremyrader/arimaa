@@ -4,107 +4,33 @@ var Game = {
 
         this.rows = rows;
         this.columns = columns;
-
-        for (var i = 1; i <= columns; i++) {
-            for (var j = 1; j <= rows; j++) {
-                this.locations = null;
+        this.locations = [];
+        
+        for (var i = 0; i < rows; i++) {
+            
+            this.locations.push([]);
+            for (var j = 0; j < columns; j++) {
+                this.locations[i].push(null);
             }
         }
         
-        this.turn = 'b';
-        this.selectedPiece = [1,3];
-        
-        this.locations = [
-            [
-                { loyalty : 'w', rank : '6' },
-                { loyalty : 'b', rank : '6' },
-                null,
-                null,
-                null,
-                { loyalty : 'b', rank : '6' },
-                null,
-                null
-            ],
-            [
-                { loyalty : 'b', rank : '4' },
-                { loyalty : 'w', rank : '6' },
-                { loyalty : 'w', rank : '6' },
-                { loyalty : 'b', rank : '1' },
-                null,
-                { loyalty : 'b', rank : '6' },
-                null,
-                null
-            ],
-            [
-                null,
-                { loyalty : 'b', rank : '2' },
-                { loyalty : 'b', rank : '6' },
-                { loyalty : 'w', rank : '3' },
-                { loyalty : 'w', rank : '1' },
-                null,
-                null,
-                null
-            ], 
-            [
-                { loyalty : 'w', rank : '6' },
-                { loyalty : 'w', rank : '5' },
-                { loyalty : 'w', rank : '3' },
-                { loyalty : 'b', rank : '5' },
-                null,
-                { loyalty : 'b', rank : '6' },
-                null,
-                null
-            ],
-            [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                { loyalty : 'w', rank : '2' },
-                null
-            ],
-            [
-                null,
-                null,
-                null,
-                null,
-                { loyalty : 'b', rank : '6' },
-                null,
-                null,
-                null
-            ],
-            [
-                { loyalty : 'w', rank : '6' },
-                null,
-                { loyalty : 'w', rank : '4' },
-                null,
-                null,
-                null,
-                { loyalty : 'b', rank : '5' },
-                { loyalty : 'b', rank : '6' }
-            ],
-            [
-                { loyalty : 'w', rank : '6' },
-                { loyalty : 'w', rank : '6' },
-                null,
-                null,
-                null,
-                null,
-                null,
-                { loyalty : 'b', rank : '6' }
-            ],
-        ];
-
-        for (var i = 0; i < rows; i++) {
-
+        for (var i = rows-2; i < rows; i++) {
             for (var j = 0; j < columns; j++) {
+                this.locations[i][j] = 'initial';
+            }
+        }
+        
+        this.phase = 'setup';
+        
+        
+    },
+    
+    evaluateBoard : function() {
+        for (var i = 0; i < this.rows; i++) {
+            for (var j = 0; j < this.columns; j++) {
                 this.evaluateSquare(i, j);
             }
-
         }
-        
     },
 
     evaluateSquare : function(row, column) {
@@ -234,5 +160,121 @@ var Game = {
         }
         
     },
+    
+    evaluateGameStatus : function() {
+        
+        var playerAReachedGoalRow;
+        var playerBReachedGoalRow;
+        
+        //Check if a rabbit of player A reached goal. If so player A wins.
+        for (var col = 0; col < this.columns; col++) {
+            if (this.locations[0][col].loyalty === this.turn.color && this.locations[0][col].rank === 6) {
+                playerAReachedGoalRow = true;
+            }
+        }
+        
+        //Check if a rabbit of player B reached goal. If so player B wins.
+        for (var col = 0; col < this.columns; col++) {
+            if (this.locations[7][col].loyalty === this.turn.color && this.locations[0][col].rank === 6) {
+                playerBReachedGoalRow = true;
+            }
+        }
+        
+        if (playerAReachedGoalRow) {
+            Game.winner = this.playerA;
+            Game.phase = 'end';
+        }
+        else if (playerBReachedGoalRow) {
+            Game.winner = this.playerB;
+            Game.phase = 'end';
+        }
+        else if (playerB.rabbits === 0) {
+            Game.winner = this.playerA;
+            Game.phase = 'end';
+        }
+        else if (playerA.rabbits === 0) {
+            Game.winner = this.playerB;
+            Game.phase = 'end';
+        }
+        else if (playerB.canMove === false)
+        {
+            Game.winner = this.playerA;
+            Game.phase = 'end';
+        }
+        else {
+            //No one wins/loses. Continue game play   
+        }
+        
+        //Will need to implement this at a later point
+        //Check if the only moves player B has are 3rd time repetitions. If so player A wins.
+        /*
+        else if (playerBMovesAreInvalid)
+        {
+            //Player A wins
+        }
+        */
+        
+    },
+    
+    pass : function(player) {
+        Game.turn = player.color;       
+    },
+    
+    setup : function(name, color, difficulty) {
+        
+        var playerA = color === 'White' ? name : dificulty + '-bot';
+        var playerB = playerA === name ? difficulty + '-bot' : name;
+        
+        this.playerA = {
+            name : playerA,
+            color : 'White',
+            movesLeft : 4,
+            canMove : true,
+            rabbits : 6,
+        };
+        
+        this.playerB = {
+            name : playerB,
+            color : 'Black',
+            movesLeft : 4,
+            canMove : true,
+            rabbits : 6,
+        };
+        
+        Game.phase = 'play';
+        
+        this.turn = playerA;
+    },
+    
+    addPiece : function(color, rank, row, col) {
+        this.locations[row][col] = {
+            rank : rank,
+            loyalty : color,
+        }
+    },
+    
+    removePiece : function(row, col) {
+        
+        //If piece removed is a rabbit then update player info
+        if (this.locations[row][col].rank === 6) {
+            if (this.locations[row][col].loyalty === 'White') {
+                playerA.rabbits--;   
+            }
+            else {
+                playerB.rabbits--;   
+            }
+        }
+        
+        this.locations[row][col] = null;
+        
+    },
+    
+    movePiece : function(currentLocation, newLocation) {
+        
+        var temp = this.locations[currentLocation[0]][currentLocation[1]];
+        this.locations[newLocation[0]][newLocation[1]] = temp;
+        temp = null;
+        
+    }
 
 };
