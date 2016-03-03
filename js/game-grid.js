@@ -13,8 +13,24 @@ function renderGameBoard() {
         renderGameSetup();    
     }
     
+    displayLoginInfo();
+    
     startAnimation();
 
+}
+
+function displayLoginInfo() {
+    
+    var debugDiv = document.getElementById('debug');
+    
+    var timestamp = localStorage.getItem('cs2550timestamp');
+    var data = timestamp.split(' ');
+    
+    var message = 'You logged in as ' + data[0] + ' on ' + data[1] + ' at ' + data[2];
+    var textNode = document.createTextNode(message);
+    
+    debugDiv.appendChild(textNode);
+    
 }
 
 
@@ -361,6 +377,15 @@ function renderGameSetup() {
     var debugDiv = document.createElement('div');
     debugDiv.setAttribute('id', 'debug');
     gameSetupDiv.appendChild(debugDiv);
+    
+    var clearLocalStorageBtn = document.createElement('button');
+    clearLocalStorageBtn.type = 'button';
+    clearLocalStorageBtn.addEventListener('click', clearLocalStorage, false);
+    
+    var buttonTxt = document.createTextNode('Clear Local Storage');
+    clearLocalStorageBtn.appendChild(buttonTxt);
+    
+    debugDiv.appendChild(clearLocalStorageBtn);
 
     sideBarDiv.appendChild(gameSetupDiv);
     
@@ -370,6 +395,15 @@ function renderGameSetup() {
     renderGameStart();
     
 
+}
+
+function clearLocalStorage() {
+    localStorage.clear();
+    var debugDiv = document.getElementById('debug');
+    
+    while (debugDiv.firstChild) {
+        debugDiv.removeChild(debugDiv.firstChild);
+    }
 }
 
 function renderColorSelect() {

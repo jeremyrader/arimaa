@@ -2,6 +2,7 @@
 	<head>
 		<title>Description Page</title>
 		<LINK href="../css/main.css" rel="stylesheet" type="text/css">
+        <script src="../js/ajax.js"></script>
 	</head>
 	<body>
 		<br>
@@ -18,9 +19,12 @@
 						</td>
 					</tr>
 				</table>
-				<div class="play">
-					<a class = "playlink" href="game-grid.html" target="_blank">PLAY</a>
-				</div>
+                <div>
+                    <input placeholder="username" id="username">
+                    <input placeholder="password" id="password" type="password">
+                    <button type="button" name="login" onclick="loadAjaxLoginRequest()">Login</button>
+                    <span id="loginStatus"></span>
+                </div>
 			</div>
 			<br>
 			<div class = "content">
