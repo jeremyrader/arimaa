@@ -2,43 +2,56 @@
 	<head>
 		<title>Arimaa Game</title>
 		<LINK href="../css/game-grid.css" rel="stylesheet" type="text/css">
-        <script src="../js/game-grid.js"></script>
-        <script src="../js/model.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="../js/views/game-grid.js"></script>
+        <script src="../js/views/game-setup.js"></script>
+        <script src="../js/model/player.js"></script>
+        <script src="../js/model/board.js"></script>
+        <script src="../js/model/piece.js"></script>
+        <script src="../js/model/bot.js"></script>
+        <script src="../js/model/game.js"></script>
 	</head>
-	<body onload = "renderGameBoard()">
+	<body onload = "loadGame()">
         
         <div id="container">
 
-	<header>
-        <div id = "elephants-div">
-            <img id = "white-elephant-img" src="../images/w-1.svg" width=100px height=100px>
-            <img id = "black-elephant-img" src="../images/b-1.svg" width=100px height=100px>
+            <header>
+                <div id = "elephants-div">
+                    <img id = "white-elephant-img" src="../images/w-1.svg" width=100px height=100px>
+                    <img id = "black-elephant-img" src="../images/b-1.svg" width=100px height=100px>
+                </div>
+            </header>
+
+            <section id="content">
+                <button id="pass-turn" onclick="human.passTurn()">Pass Turn</button>
+            </section>
+
+            <div id = "game-grid" class = "grid-container">
+            </div>
+
+            <aside id="sidebar">  
+            </aside>
+
+            <footer>
+            </footer>
+            
+           
+
         </div>
-	</header>
-		
-	<section id="content">
-	</section>
-	
-	<div id = "game-grid" class = "grid-container">
-	</div>
 
-	<aside id="sidebar">  
-	</aside>
-	
-	<footer>
-	</footer>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+        <div id="overlay">
+            <div class="modal">
+                <button type="button" onclick="overlay()"><i class="material-icons">close</i></button>
+                <table id="staged-pieces"></table>
+            </div>
+        </div>
 
-</div>
-        
-        
-        
-        
-		<br/>
-		<br/>
-		<br/>
-		
-			</br>
-		</div>
- 
+
+
 	</body>
 </html>

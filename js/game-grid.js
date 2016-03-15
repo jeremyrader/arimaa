@@ -1,13 +1,8 @@
 function renderGameBoard() {
     
-    var gameGrid = document.getElementById('game-grid');
-    gameGrid.innerHTML = generateTable(8,8);
+    renderGameGrid(8,8);
 
     Game.init(8,8);
-    
-    drawPits();
-    addClickHandlers();
-    
     
     if (Game.phase === 'setup') {
         renderGameSetup();    
@@ -34,39 +29,42 @@ function displayLoginInfo() {
 }
 
 
-function generateTable(rows, columns) {
+function renderGameGrid(rows, columns) {
     
-    var table = '<table id="game-squares">';
+    var gameGridDiv = document.getElementById('game-grid');
+    
+    var table = document.createElement('table'); 
+    table.setAttribute('id', 'game-squares');
+    
+    gameGridDiv.appendChild(table);
     
     //Generate new rows
-    for (var i = rows; i > 0; i--) {
-        var rowNumber = i.toString();
-        table += generateRow(columns, rowNumber);
-    }
-
-    table += '</table>';
-    
-    return table;
-         
-}
-
-function generateRow(columns, number) {
-    return '<tr>' + generateColumn(columns, number) + '</tr>';
-}
-
-function generateColumn(columns, number) {
-
-    var column = '';
-
-    //Iterate over columns to create cells
-    for (var i = 1; i < columns + 1; i++) {
-        column += '<td></td>';
-    }
-
-    return column;
-}
+    for (var i=0; i < rows; i++) {
         
-function drawPieces() {
+        var row = document.createElement('tr');
+        row.setAttribute('class', 'game-cell');
+        table.appendChild(row);
+
+        //Iterate over columns to create cells
+        for (var j=0; j < columns; j++) {
+
+            var cell = document.createElement('td');
+            cell.setAttribute('class', 'game-cell');
+            
+            if((i===2 && j===2) || (i===2 && j===5) || (i===5 && j===2) || (i===5 && j===5) ) {
+                cell.className += ' pit';    
+            }
+            
+            row.appendChild(cell);
+            
+        }
+        
+    }
+
+}
+
+        
+function renderPieces() {
     
     var gridTable = document.getElementById('game-squares');
 
@@ -85,21 +83,6 @@ function drawPieces() {
            
     }
 
-}
-
-function drawPits() {
-    
-    var gridTable = document.getElementById('game-squares');
-    
-    var cell1 = gridTable.rows[2].cells[2];
-    var cell2 = gridTable.rows[5].cells[5];
-    var cell3 = gridTable.rows[2].cells[5];
-    var cell4 = gridTable.rows[5].cells[2];
-
-    cell1.className += 'pit';
-    cell2.className += 'pit';  
-    cell3.className += 'pit';  
-    cell4.className += 'pit';
 }
 
 function drawAvailableActions() {
@@ -145,38 +128,6 @@ function startGame() {
     var parent = document.getElementById("sidebar");
     var child = document.getElementById("game-setup");
     parent.removeChild(child);
-}
-
-function addClickHandlers() {
-
-    var cells = document.getElementsByTagName('td');
-    
-    for (var i=0; i < cells.length; i++) {
-        cells[i].addEventListener('click', handleCellClick, false);
-        cells[i].addEventListener('blur', function() {
-            var gridTable = document.getElementById('game-squares');
-            var cell = gridTable.rows[row].cells[col];
-            cell.className = '';
-        }, false);
-    }
-    
-}
-    
-function handleCellClick() {
-    
-    var col = this.cellIndex;
-    var row = this.parentNode.rowIndex;
-
-    var debugDiv = document.getElementById('debug');
-    debugDiv.innerHTML = 'You clicked at position: ' + col + ' ' + row;
-
-    var gridTable = document.getElementById('game-squares');
-    var cell = gridTable.rows[row].cells[col];
-
-    if(cell.className !== 'move' && cell.className != 'pit') {
-        cell.className += 'move';
-    }
-        
 }
 
 var whiteElephantImg, blackElephantImg, msPerFrame, frameCount, moveDist, elephantsDivWidth;
@@ -342,8 +293,148 @@ function whiteReturnToCenter() {
 
 }
 
+function checkRankOptions() {
+    
+    var optionsLeft = true;
+    
+    pieces.forEach(function(piece) {
+        if (pieces.length < 1) {
+            
+        }
+    });
+    
+    return optionsLeft;
+}
+
+var ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
+
+function isInArray(value, array) {
+    return array.indexOf(value) > -1;
+}
+
+
+function renderPieceSelectors() {
+    
+    var colorSelectors = document.getElementsByName('color');
+    
+    for (i=0; i < colorSelectors.length; i++) {
+        colorSelectors[i].setAttribute('disabled', true);
+    }
+    
+    var gameGridTable = document.getElementById('game-squares');
+    var color = this.value === 'White' ? 'w' : 'b';
+
+    var rows = Game.rows;
+    var columns = Game.columns;
+
+    for (var i=6; i < rows; i++) {
+        for (var j=0; j < columns; j++) {
+
+            //Initialize each starting square
+            Game.locations[i][j] = { rank : 0 };
+
+            //Set an opaque square
+            var selectDiv = document.createElement('div');
+            selectDiv.setAttribute('class', 'select-piece');
+
+            var cell = gameGridTable.rows[i].cells[j];
+            cell.appendChild(selectDiv);
+            
+            cell.addEventListener('click', cyclePieces, false);
+
+        }
+    }
+    
+    function cyclePieces() {
+
+        var self = this; //refers to this cell
+
+        removeChildNodes(this);
+
+        var row = this.parentNode.rowIndex;
+        var col = this.cellIndex
+
+        //Load square state
+        var rank = Game.locations[row][col].rank;
+
+        //Save copy of square state
+        var temp = rank; //6
+        
+        do {
+            
+            rank++;
+
+            if(rank > 6) {
+                rank = 0;
+            }
+            
+        } while (rank != 0 ? !isInArray(rank,ranks) : false)
+        
+        
+        Game.locations[row][col].rank = rank;
+        
+        //Add previous rank back in
+        if (temp !=0) {
+            ranks.push(temp);
+        }
+        
+        var index = ranks.indexOf(rank);
+
+        if (index > -1) {
+            ranks.splice(index, 1);
+        }
+
+
+       if (rank != 0) {
+            renderPlayerPiece(color, rank);
+       }
+        
+        if (ranks.length < 1) {
+            console.log('ready');
+            var gameStartBtn = document.getElementById('start-btn');
+            gameStartBtn.setAttribute('disabled', 'false');
+        }
+
+    }
+    
+}
+
+
+function renderPlayerPiece(color, rank) {
+    
+    var color = this.value === 'White' ? 'w' : 'b';
+    
+    var playerPiece = document.createElement('img');
+
+    playerPiece.setAttribute('name', color + rank);
+    playerPiece.setAttribute('src', '../images/' + color + '-' + rank + '.svg');
+    playerPiece.setAttribute('height', '100%');
+    playerPiece.setAttribute('width', '100%');
+    playerPiece.setAttribute('z-index', 1500);
+    playerPiece.addEventListener('click', function() {
+        //do something here
+    }, false);
+
+    this.appendChild(playerPiece);
+
+}
+
 
 function renderGameSetup() {
+    
+    var gameGridTable = document.getElementById('game-squares');
+    
+    for(var i=0; i < Game.rows; i++) {
+        for(var j=0; j < Game.columns; j++) {
+            
+            var cell = gameGridTable.rows[i].cells[j];
+            
+            if(i===6 || i===7) {
+                //cell.addEventListener('click', selectPiece, false);
+            }
+            
+        }
+    }
 
     var sideBarDiv = document.getElementById('sidebar');
     
@@ -361,10 +452,6 @@ function renderGameSetup() {
     var colorSelectDiv = document.createElement('div');
     colorSelectDiv.setAttribute('id', 'color-select');
     gameSetupDiv.appendChild(colorSelectDiv);
-    
-    var stagedPiecesDiv = document.createElement('div');
-    stagedPiecesDiv.setAttribute('id', 'staged-pieces');
-    gameSetupDiv.appendChild(stagedPiecesDiv);
     
     var difficultySelectDiv = document.createElement('div');
     difficultySelectDiv.setAttribute('id', 'difficulty-select');
@@ -418,17 +505,13 @@ function renderColorSelect() {
     black.setAttribute('name', 'color');
     black.setAttribute('type', 'radio');
     black.setAttribute('value', 'Black');
-    black.addEventListener('click', function() {
-        alert('You chose to play as black');
-    }, false);
+    black.addEventListener('click', renderPieceSelectors, false);
 
     var white = document.createElement('input');
     white.name = 'color';
     white.type = 'radio';
     white.value = 'White';
-    white.addEventListener('click', function() {
-        alert('You chose to play as white');
-    }, false);
+    white.addEventListener('click', renderPieceSelectors, false);
     
     var txt1 = document.createTextNode('White');
     var txt2 = document.createTextNode('Black');
@@ -499,6 +582,7 @@ function renderGameStart() {
     buttonDiv.setAttribute('class', 'play');
 
     var startButton = document.createElement('button');
+    startButton.setAttribute('id', 'start-btn');
     startButton.setAttribute('class', 'play');
     startButton.setAttribute('disabled', 'true');
     
@@ -509,3 +593,94 @@ function renderGameStart() {
     
     buttonDiv.appendChild(startButton);   
 }
+
+function overlay() {
+    
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    
+    renderStagedPieces(this);
+}
+
+
+function removeChildNodes(element) {
+    while (element.hasChildNodes()) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+function renderStagedPieces(clickedCell) {
+    
+    //Get color for displaying pieces
+    var color;
+
+    var colorOptions = document.getElementsByName('color');
+
+    for (var i=0; i < colorOptions.length; i++) {
+        colorOptions[i].setAttribute('disabled', 'true');
+        if ( colorOptions[i].checked ) {
+            color = (colorOptions[i].value === 'White') ? 'w' : 'b';
+        }
+    }
+    
+    
+    var stagedPiecesTable = document.getElementById('staged-pieces');
+    
+    removeChildNodes(stagedPiecesTable);
+
+    
+    var row1 = document.createElement('tr');
+    row1.setAttribute('id', 'stagedPieces1');
+    stagedPiecesTable.appendChild(row1);
+    
+    renderStagedPiece(row1, clickedCell, color, 1);
+    renderStagedPiece(row1, clickedCell, color, 2);
+    
+    for (var i=0; i < 2; i++) {
+        renderStagedPiece(row1, clickedCell, color, 3);
+        renderStagedPiece(row1, clickedCell, color, 4);
+        renderStagedPiece(row1, clickedCell, color, 5);
+    }
+    
+    var row2 = document.createElement('tr');
+    row2.setAttribute('id', 'stagedPieces1');
+    stagedPiecesTable.appendChild(row2);
+    
+    for(var i=0; i < 8; i++) {
+        renderStagedPiece(row2, clickedCell, color, 6);
+    }
+
+}
+
+function renderStagedPiece(row, clickedCell, color, rank) {
+
+    var cell = document.createElement('td');
+    row.appendChild(cell);
+    
+    var playerPiece = document.createElement('img');
+
+    playerPiece.setAttribute('name', color + rank);
+    playerPiece.setAttribute('src', '../images/' + color + '-' + rank + '.svg');
+    playerPiece.addEventListener('click', function() {
+        
+        var col = clickedCell.cellIndex
+        var row = clickedCell.parentNode.rowIndex;
+        
+        overlay();
+        
+        Game.addPiece(color, rank, row, col);
+        
+        
+        cell.removeChild(playerPiece);
+        
+        console.log(Game.locations);
+        
+        renderPieces();
+
+    }, false);
+
+    cell.appendChild(playerPiece);
+
+}
+
+
