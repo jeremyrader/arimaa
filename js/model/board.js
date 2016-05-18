@@ -11,7 +11,7 @@ function Board() {
         }
     }
     
-    renderGameGrid(this.rows, this.cols);
+    renderArimaaBoard(this.rows, this.cols);
 }
 
 Board.prototype.initializePlayerPieces = function() {

@@ -1,22 +1,20 @@
 function loadGame() {
     
     game = new Game();
-
     board = new Board();
     
     game.loop();
 
 }
 
-
-function renderGameGrid(rows, columns) {
+function renderArimaaBoard(rows, columns) {
     
-    var gameGridDiv = document.getElementById('game-grid');
+    var arimaaBoardDiv = document.getElementById('arimaa-board');
     
     var table = document.createElement('table'); 
     table.setAttribute('id', 'game-squares');
     
-    gameGridDiv.appendChild(table);
+    arimaaBoardDiv.appendChild(table);
     
     //Generate new rows
     for (var i=0; i < rows; i++) {
