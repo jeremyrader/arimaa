@@ -2,9 +2,6 @@ function Board() {
     this.rows = 8;
     this.cols = 8;
     this.locations = [];
-}
-
-Board.prototype.initialize = function() {
     
     for (var i = 0; i < this.rows; i++) {
             
@@ -15,7 +12,6 @@ Board.prototype.initialize = function() {
     }
     
     renderGameGrid(this.rows, this.cols);
-
 }
 
 Board.prototype.initializePlayerPieces = function() {

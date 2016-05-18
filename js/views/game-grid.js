@@ -3,7 +3,6 @@ function loadGame() {
     game = new Game();
 
     board = new Board();
-    board.initialize();
     
     game.loop();
 
