@@ -1,6 +1,6 @@
-function Board(rows, cols) {
-    this.rows = rows;
-    this.cols = cols;
+function Board() {
+    this.rows = 8;
+    this.cols = 8;
     this.locations = [];
 }
 

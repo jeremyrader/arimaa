@@ -241,7 +241,7 @@ Game.prototype.reset = function() {
     
     game.ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
     
-    board = new Board(8,8);
+    board = new Board();
     board.initialize();
     
     game.loop();

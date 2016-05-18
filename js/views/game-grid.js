@@ -2,7 +2,7 @@ function loadGame() {
     
     game = new Game();
 
-    board = new Board(8,8);
+    board = new Board();
     board.initialize();
     
     game.loop();
