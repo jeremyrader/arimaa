@@ -1,0 +1,13 @@
+table, tr {
+    border:5px solid black;
+    border-collapse: collapse;
+    font-size: 30px; 
+}
+
+p {
+    font-size: 20px;  
+}
+
+li {
+    font-size : 30px;   
+}

@@ -1,0 +1,20 @@
+#tutorial h1 {
+    font-size: 40px;   
+}
+
+#tutorial p {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#tutorial {
+	width: 300px;
+    height : 735px;
+	float: left;
+    border : solid black 10px;
+    border-radius: 25px;
+    padding: 50px;
+    background-color : white;
+    display: block;
+    margin : 0 auto; 
+}

@@ -2,17 +2,31 @@
 	<head>
 		<title>Arimaa Game</title>
 		<LINK href="../css/game-grid.css" rel="stylesheet" type="text/css">
+        <LINK href="../css/game-controls.css" rel="stylesheet" type="text/css">
+        <LINK href="../css/tutorial.css" rel="stylesheet" type="text/css">
+        <LINK href="../css/game-page.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="../js/views/game-grid.js"></script>
-        <script src="../js/views/game-setup.js"></script>
+        <script src="../js/views/game-controls.js"></script>
+        <script src="../js/ajax.js"></script>
         <script src="../js/model/player.js"></script>
         <script src="../js/model/board.js"></script>
         <script src="../js/model/piece.js"></script>
         <script src="../js/model/bot.js"></script>
         <script src="../js/model/game.js"></script>
+        <script src="../js/views/pieces.js"></script>
+        <script src="../js/views/tutorial.js"></script>
+        <script src="../js/views/base.js"></script>
 	</head>
 	<body onload = "loadGame()">
-        
+        <audio id="knock1" src="../audio/household_door_front_glass_window_upvc_knock_x1.mp3"></audio>
+        <audio id="knock2" src="../audio/household_door_wooden_internal_knock_x1.mp3"></audio>
+        <audio id="knock3" src="../audio/household_wall_partition_hollow_knock_x1.mp3"></audio>
+        <audio id="knock2x" src="../audio/household_door_front_glass_window_upvc_knock_x2.mp3"></audio>
+        <audio id="audioList">
+
+        </audio>
         <div id="container">
 
             <header>
@@ -22,14 +36,13 @@
                 </div>
             </header>
 
-            <section id="content">
-                <button id="pass-turn" onclick="human.passTurn()">Pass Turn</button>
+            <section id="tutorial">
             </section>
 
             <div id = "game-grid" class = "grid-container">
             </div>
 
-            <aside id="sidebar">  
+            <aside id="game-controls">
             </aside>
 
             <footer>
@@ -43,15 +56,6 @@
         <br/>
         <br/>
         <br/>
-        
-        <div id="overlay">
-            <div class="modal">
-                <button type="button" onclick="overlay()"><i class="material-icons">close</i></button>
-                <table id="staged-pieces"></table>
-            </div>
-        </div>
-
-
 
 	</body>
 </html>

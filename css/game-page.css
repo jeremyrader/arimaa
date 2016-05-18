@@ -1,0 +1,29 @@
+header {
+	height: 100px;
+	padding: 0 15px;
+}
+
+footer {
+	clear: both;
+	padding: 0 15px;
+}
+
+body {
+    background-image: url(../images/forest-green-background.jpg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+}
+
+p {
+    margin: 0 auto;
+    display : block;
+}
+
+h1 {
+    margin: 0 auto;
+}
+
+table {
+    margin: 0 auto;
+    border-spacing:0;
+}
