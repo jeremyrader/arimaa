@@ -34,7 +34,7 @@ Board.prototype.getPiece = function(row, col) {
 Board.prototype.evaluate = function() {
     for (var i = 0; i < this.rows; i++) {
         for (var j = 0; j < this.cols; j++) {
-            this.evaluateLocation(i, j);
+            this.evaluateSquare(i, j);
         }
     }
 }
@@ -97,7 +97,7 @@ Board.prototype.removePiece = function(piece) {
 
 }
 
-Board.prototype.evaluateLocation = function(row, col) {
+Board.prototype.evaluateSquare = function(row, col) {
 
     var self = this;
 
