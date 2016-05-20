@@ -77,7 +77,7 @@ function onSelectPiece() {
     var playerPiece = board.pieces[row][col];
     playerPiece.location = [row, col];
     
-    removeHighlights();
+    removeHandlers();
     renderHighlights(playerPiece);
     
     human.selectedPiece = playerPiece;
@@ -86,7 +86,7 @@ function onSelectPiece() {
 
 function pushPiece() {
     
-    //removeHighlights();
+    //removeHandlers();
 
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex
@@ -128,7 +128,7 @@ function pushPiece() {
 
 function movePiece() {
     
-    //removeHighlights();
+    //removeHandlers();
 
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex
@@ -151,7 +151,7 @@ function movePiece() {
 
 function pullPiece() {
     
-    //removeHighlights();
+    //removeHandlers();
     console.log('pull');
 
     var row = this.parentNode.rowIndex;
@@ -242,6 +242,6 @@ function moveEnemyPiece() {
     human.enemyPiece = enemyPiece;
     renderInteractOptions(enemyPiece);
     
-    removeHighlights(human.selectedPiece);
+    removeHandlers(human.selectedPiece);
     
 }

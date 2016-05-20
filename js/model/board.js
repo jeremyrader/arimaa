@@ -41,7 +41,7 @@ Board.prototype.evaluate = function() {
 
 Board.prototype.update = function() {
     
-    removeHighlights();
+    removeHandlers();
     this.evaluate();
 
     renderPieces();
