@@ -27,7 +27,7 @@ Board.prototype.initializePlayerPieces = function(color) {
 
 }
 
-Board.prototype.getLocation = function(row, col) {
+Board.prototype.getPiece = function(row, col) {
     return this.pieces[row][col];
 }
 
