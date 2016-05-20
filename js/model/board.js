@@ -14,15 +14,17 @@ function Board() {
     renderArimaaBoard(this.rows, this.cols);
 }
 
-Board.prototype.initializePlayerPieces = function() {
+Board.prototype.initializePlayerPieces = function(color) {
+
     for (var i=6; i < this.rows; i++) {
         for (var j=0; j < this.cols; j++) {
 
             //Initialize each starting square
-            this.locations[i][j] = new Piece(human.color, 0);
+            this.locations[i][j] = new Piece(color, 0);
 
         }
     }
+
 }
 
 Board.prototype.getLocation = function(row, col) {

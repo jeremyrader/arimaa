@@ -184,7 +184,7 @@ Game.prototype.loop = function() {
         else {
             
             if(this.turn === human.color) {
-                board.initializePlayerPieces();
+                board.initializePlayerPieces(human.color);
                 renderPieceSelectors();
             }
             else {
