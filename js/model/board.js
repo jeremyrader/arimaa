@@ -1,13 +1,13 @@
 function Board() {
     this.rows = 8;
     this.cols = 8;
-    this.locations = [];
+    this.pieces = [];
     
     for (var i = 0; i < this.rows; i++) {
             
-        this.locations.push([]);
+        this.pieces.push([]);
         for (var j = 0; j < this.cols; j++) {
-            this.locations[i].push(null);
+            this.pieces[i].push(null);
         }
     }
     
@@ -20,7 +20,7 @@ Board.prototype.initializePlayerPieces = function(color) {
         for (var j=0; j < this.cols; j++) {
 
             //Initialize each starting square
-            this.locations[i][j] = new Piece(color, 0);
+            this.pieces[i][j] = new Piece(color, 0);
 
         }
     }
@@ -28,7 +28,7 @@ Board.prototype.initializePlayerPieces = function(color) {
 }
 
 Board.prototype.getLocation = function(row, col) {
-    return this.locations[row][col];
+    return this.pieces[row][col];
 }
 
 Board.prototype.evaluate = function() {
@@ -64,11 +64,11 @@ Board.prototype.update = function() {
 
 Board.prototype.movePiece = function(currentLocation, newLocation) {
 
-    var temp = board.locations[currentLocation[0]][currentLocation[1]];
-    this.locations[newLocation[0]][newLocation[1]] = temp;
-    this.locations[currentLocation[0]][currentLocation[1]] = null;
+    var temp = board.pieces[currentLocation[0]][currentLocation[1]];
+    this.pieces[newLocation[0]][newLocation[1]] = temp;
+    this.pieces[currentLocation[0]][currentLocation[1]] = null;
     
-    var piece = board.locations[newLocation[0]][newLocation[1]];
+    var piece = board.pieces[newLocation[0]][newLocation[1]];
 
     piece.location = newLocation;
     
@@ -93,7 +93,7 @@ Board.prototype.removePiece = function(piece) {
     }
     
     piece.location = null;
-    board.locations[location[0]][location[1]] = null;
+    board.pieces[location[0]][location[1]] = null;
 
 }
 
@@ -138,7 +138,7 @@ Board.prototype.evaluateLocation = function(row, col) {
             //evaluate each adjacent piece to determine whether it is a weaker enemy
             piece.occupiedSquares.forEach(function(occupiedSquare) {
 
-                var neighbor = self.locations[occupiedSquare[0]][occupiedSquare[1]];
+                var neighbor = self.pieces[occupiedSquare[0]][occupiedSquare[1]];
 
                 if(piece.color !== neighbor.color && piece.rank < neighbor.rank) {
                     piece.movableNeighbors.push([occupiedSquare[0],occupiedSquare[1]]);

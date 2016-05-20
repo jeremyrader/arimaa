@@ -25,11 +25,11 @@ Piece.prototype.evaluate = function(row, col) {
     
     var self = this;
 
-    var neighborRow = board.locations[row];
+    var neighborRow = board.pieces[row];
     
     if (neighborRow !== undefined) {
         
-        var neighbor = board.locations[row][col];
+        var neighbor = board.pieces[row][col];
 
         if (neighbor !== undefined) {
         

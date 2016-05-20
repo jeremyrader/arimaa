@@ -94,8 +94,8 @@ function getNextPiece() {
     var col = self.cellIndex
 
     //Load square state
-    var rank = board.locations[row][col].rank;
-    var color = board.locations[row][col].color;
+    var rank = board.pieces[row][col].rank;
+    var color = board.pieces[row][col].color;
     var ranks = game.ranks;
 
     //Save copy of square state
@@ -145,8 +145,8 @@ function getPreviousPiece() {
     var col = self.cellIndex
 
     //Load square state
-    var rank = board.locations[row][col].rank;
-    var color = board.locations[row][col].color;
+    var rank = board.pieces[row][col].rank;
+    var color = board.pieces[row][col].color;
     var ranks = game.ranks;
 
     //Save copy of square state
@@ -198,9 +198,9 @@ function getPreviousPiece() {
 
 function renderHighlights(playerPiece, interact) {
     
-    //var playerPiece = board.locations[human.selectedPiece[0]][human.selectedPiece[1]];
+    //var playerPiece = board.pieces[human.selectedPiece[0]][human.selectedPiece[1]];
 
-    //var playerPiece = board.locations[human.selectedPiece[0]][human.selectedPiece[1]]
+    //var playerPiece = board.pieces[human.selectedPiece[0]][human.selectedPiece[1]]
     var gridTable = document.getElementById('game-squares');
 
     var vacantSquares = playerPiece.vacantSquares;

@@ -21,11 +21,11 @@ Player.prototype.populateInitialSquares = function() {
     }
 
     for (var i=0; i < board.cols; i++) {
-        board.locations[0][i] = pieces.shift();
+        board.pieces[0][i] = pieces.shift();
     }
 
     for (var i=0; i < board.cols; i++) {
-        board.locations[1][i] = pieces.shift();
+        board.pieces[1][i] = pieces.shift();
     }
         
 }
@@ -43,7 +43,7 @@ Player.prototype.addPiece = function(row, col, color, rank) {
     var piece = new Piece(color, rank);
     
     piece.location = [row, col];
-    board.locations[row][col] = piece;
+    board.pieces[row][col] = piece;
 
 }
 
@@ -66,7 +66,7 @@ Player.prototype.evaluateCanMove = function() {
     for (var i = 0; i < board.rows; i++) {
         for (var j = 0; j < board.cols; j++) {
             
-            if (board.locations[i][j] !== null && self.color === board.locations[i][j].color && (board.locations[i][j].vacantSquares.length > 0 || board.locations[i][j].movableNeighbors.length > 0) ) {
+            if (board.pieces[i][j] !== null && self.color === board.pieces[i][j].color && (board.pieces[i][j].vacantSquares.length > 0 || board.pieces[i][j].movableNeighbors.length > 0) ) {
                 self.canMove = true;
             }
 

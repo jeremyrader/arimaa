@@ -26,14 +26,14 @@ Bot.prototype.populateInitialSquares = function() {
         
         var piece = pieces.shift();
         piece.location = [0, i];
-        board.locations[0][i] = piece;
+        board.pieces[0][i] = piece;
     }
 
     for (var i=0; i < board.cols; i++) {
         
         var piece = pieces.shift();
         piece.location = [1, i];
-        board.locations[1][i] = piece;
+        board.pieces[1][i] = piece;
     }
     
     game.ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
@@ -58,7 +58,7 @@ Bot.prototype.processTurn = function() {
         //Grab each of the pieces that the bot may move
         for (var i = 0; i < board.rows; i++) {
             for (var j = 0; j < board.cols; j++) {
-                var piece = board.locations[i][j];
+                var piece = board.pieces[i][j];
 
                 if(piece != null && piece.color === bot.color && piece.vacantSquares.length > 0) {
                     botMovablePieces.push(piece);

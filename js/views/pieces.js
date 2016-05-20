@@ -3,7 +3,7 @@ function renderPlayerPiece(row, col) {
     var gridTable = document.getElementById('game-squares');
     
     var cell = gridTable.rows[row].cells[col];
-    var piece = board.locations[row][col];
+    var piece = board.pieces[row][col];
     
     var playerPiece = document.createElement('img');
     
@@ -28,7 +28,7 @@ function renderPieces() {
             var cell = gridTable.rows[row].cells[column];
             removeChildNodes(cell);
             
-            var piece = board.locations[row][column];
+            var piece = board.pieces[row][column];
 
             if (piece !== null) {
                 if (piece.rank > 0) {
@@ -74,7 +74,7 @@ function onSelectPiece() {
     var row = cell.parentNode.rowIndex;
     var col = cell.cellIndex
     
-    var playerPiece = board.locations[row][col];
+    var playerPiece = board.pieces[row][col];
     playerPiece.location = [row, col];
     
     removeHighlights();
@@ -237,7 +237,7 @@ function moveEnemyPiece() {
     var col = this.cellIndex;
     
     
-    var enemyPiece = board.locations[row][col];
+    var enemyPiece = board.pieces[row][col];
     
     human.enemyPiece = enemyPiece;
     renderInteractOptions(enemyPiece);

@@ -8,7 +8,7 @@ Game.prototype.evaluate = function() {
     
      function checkPit(row, col) {
         
-        var piece = board.locations[row][col];
+        var piece = board.pieces[row][col];
         
         if (piece && !piece.friendlyNearby) {
             board.removePiece(piece);   
@@ -33,7 +33,7 @@ Game.prototype.evaluate = function() {
     //Check if a rabbit of current player reached goal. If so current player wins.
     for (var col = 0; col < board.cols; col++) {
         
-        if (board.locations[0][col] !== null && board.locations[0][col].color === human.color && board.locations[0][col].rank === 6) {
+        if (board.pieces[0][col] !== null && board.pieces[0][col].color === human.color && board.pieces[0][col].rank === 6) {
             alert('rabbit reached goal!');
             playerAReachedGoalRow = true;
         }
@@ -41,7 +41,7 @@ Game.prototype.evaluate = function() {
 
     //Check if a rabbit of opposing player reached goal. If so opposing player wins.
     for (var col = 0; col < board.cols; col++) {
-        if (board.locations[7][col] !== null && board.locations[7][col].color === bot.color && board.locations[0][col].rank === 6) {
+        if (board.pieces[7][col] !== null && board.pieces[7][col].color === bot.color && board.pieces[0][col].rank === 6) {
             playerBReachedGoalRow = true;
         }
     }
@@ -109,7 +109,7 @@ Game.prototype.processTurn = function() {
     
     function checkPit(row, col) {
         
-        var piece = board.locations[row][col];
+        var piece = board.pieces[row][col];
         
         if (piece && !piece.friendlyNearby) {
             board.removePiece(piece);   
@@ -249,7 +249,7 @@ Game.prototype.reset = function() {
 Game.prototype.exportGameState = function() {
     
     var gameState = {
-        pieceLocations : board.locations,
+        pieceLocations : board.pieces,
         human : {
             name : human.name,
             color : human.color,
@@ -307,7 +307,7 @@ Game.prototype.importGameState = function() {
             
             if (col != null) {
                 var newPiece = new Piece(col.color, col.rank);
-                board.locations[rowIndex][colIndex] = newPiece;
+                board.pieces[rowIndex][colIndex] = newPiece;
             }
             
            
