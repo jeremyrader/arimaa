@@ -64,16 +64,14 @@ Board.prototype.update = function() {
    
 }
 
-Board.prototype.movePiece = function(currentLocation, newLocation) {
+Board.prototype.movePiece = function(current, next) {
 
-    var temp = board.pieces[currentLocation[0]][currentLocation[1]];
-    this.pieces[newLocation[0]][newLocation[1]] = temp;
-    this.pieces[currentLocation[0]][currentLocation[1]] = null;
+    var temp = board.pieces[current[0]][current[1]];
+    this.pieces[next[0]][next[1]] = temp;
+    this.pieces[current[0]][current[1]] = null;
     
-    var piece = board.pieces[newLocation[0]][newLocation[1]];
-
-    piece.location = newLocation;
-    
+    var piece = board.pieces[next[0]][next[1]];
+    piece.location = next;
     
     this.update();
 
