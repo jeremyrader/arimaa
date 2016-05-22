@@ -238,7 +238,7 @@ function renderHighlights(playerPiece, interact) {
     
 }
 
-function removeHighlights() {
+function removeHandlers() {
 
     var gridTable = document.getElementById('game-squares');
 

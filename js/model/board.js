@@ -32,18 +32,20 @@ Board.prototype.getPiece = function(row, col) {
 }
 
 Board.prototype.evaluate = function() {
+
     for (var i = 0; i < this.rows; i++) {
         for (var j = 0; j < this.cols; j++) {
             this.evaluateSquare(i, j);
         }
     }
+
 }
 
 Board.prototype.update = function() {
     
-    removeHandlers();
     this.evaluate();
 
+    removeHandlers();
     renderPieces();
     
     if(game.phase === 'setup') {
