@@ -101,7 +101,7 @@ Board.prototype.evaluateSquare = function(row, col) {
 
     var self = this;
 
-    var piece = this.getLocation(row,col);
+    var piece = this.getPiece(row,col);
 
     if (piece !== null) {
             
