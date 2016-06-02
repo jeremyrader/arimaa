@@ -8,40 +8,35 @@ Bot.prototype.constructor = Bot;
 
 Bot.prototype.populateInitialSquares = function() {
     
-    var ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
-    var ranksCopy = ranks;
-    var pieces = [];
+    let ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
+    let pieces = [];
 
-    while (ranksCopy.length > 0) {
-        var randomIndex = Math.floor((Math.random() * ranksCopy.length - 1) + 0);  
-        var rank = ranksCopy.splice(randomIndex, 1)[0];
+    while (ranks.length > 0) {
+        let randomIndex = Math.floor((Math.random() * ranks.length - 1) + 0);  
+        let rank = ranks.splice(randomIndex, 1);
         
-        var piece = new Piece(this.color, rank);
+        let piece = new Piece(this.color, rank);
 
         pieces.push(piece);
 
     }
-
-    for (var i=0; i < board.cols; i++) {
+    
+    for (let i=0; i < board.cols; i++) {
         
-        var piece = pieces.shift();
+        let piece = pieces.shift();
         piece.location = [0, i];
         board.pieces[0][i] = piece;
-    }
-
-    for (var i=0; i < board.cols; i++) {
         
-        var piece = pieces.shift();
+        piece = pieces.shift();
         piece.location = [1, i];
         board.pieces[1][i] = piece;
+        
     }
     
-    game.ranks = [1,2,3,3,4,4,5,5,6,6,6,6,6,6,6,6];
-    
-    bot.ready = true;
+    this.ready = true;
     
     board.update()
-    bot.passTurn();
+    this.passTurn();
 
 }           
 
