@@ -57,21 +57,21 @@ Player.prototype.evaluate = function() {
     }
 }
 
-Player.prototype.evaluateCanMove = function() {
+Player.prototype.getMovablePieces = function() {
     
-    var self = this;
-    
-    this.canMove = false;
+    let pieces = [];
     
     for (var i = 0; i < board.rows; i++) {
         for (var j = 0; j < board.cols; j++) {
             
-            if (board.pieces[i][j] !== null && self.color === board.pieces[i][j].color && (board.pieces[i][j].vacantSquares.length > 0 || board.pieces[i][j].movableNeighbors.length > 0) ) {
-                self.canMove = true;
+            let piece = board.pieces[i][j]
+            
+            if (piece !== null && this.color === piece.color && (piece.vacantSquares.length > 0 || piece.movableNeighbors.length > 0) ) {
+                pieces.push(piece);
             }
 
         }
     }
-
     
+    return pieces;
 }

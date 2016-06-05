@@ -24,10 +24,12 @@ Game.prototype.evaluate = function() {
     var playerBReachedGoalRow;
     
     if(this.turn === human.color) {
-        human.evaluateCanMove();
+        let movablePieces = human.getMovablePieces();
+        human.canMove = movablePieces.length > 0;
     }
     else if (this.turn === bot.color) {
-        bot.evaluateCanMove();
+        let movablePieces = bot.getMovablePieces();
+        bot.canMove = movablePieces.length > 0;
     }
 
     //Check if a rabbit of current player reached goal. If so current player wins.

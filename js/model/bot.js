@@ -41,47 +41,40 @@ Bot.prototype.populateInitialSquares = function() {
 }           
 
 Bot.prototype.processTurn = function() {
-    
-    var self = this;
 
-    this.movesLeft = Math.floor(Math.random() * (this.movesLeft - 1)) + 2;
-    
-    var intervalId = setInterval(function() {
+    this.movesLeft = generateRandom(2, this.movesLeft - 1);
+ 
+    let intervalId = setInterval(() => {
         
-        var botMovablePieces = [];
-    
-        //Grab each of the pieces that the bot may move
-        for (var i = 0; i < board.rows; i++) {
-            for (var j = 0; j < board.cols; j++) {
-                var piece = board.pieces[i][j];
+        let botMovablePieces = bot.getMovablePieces();
+        
+        let piece = getRandomFromArray(botMovablePieces);
 
-                if(piece != null && piece.color === bot.color && piece.vacantSquares.length > 0) {
-                    botMovablePieces.push(piece);
-                }
-
-            }
-        }
-
-        var randomPiece = Math.floor((Math.random() * (botMovablePieces.length - 1)) + 0);
-        var piece = botMovablePieces[randomPiece];
-
-        //get random location to move to
-        var randomSquare = Math.floor((Math.random() * (piece.vacantSquares.length - 1)) + 0);
-        var vacantSquare = piece.vacantSquares[randomSquare];
+        //get random location to move to        
+        let vacantSquare = getRandomFromArray(piece.vacantSquares);
 
         board.movePiece(piece.location, vacantSquare);
         
-        var random = Math.floor((Math.random() * 3) + 1);
+        let random = generateRandom(1, 3);
         document.getElementById('knock' + random).play();
 
-        self.movesLeft--;
-
-        if(self.movesLeft < 1) {
+        this.movesLeft--;
+        console.log(this.movesLeft)
+        if(this.movesLeft < 1) {
             clearInterval(intervalId);
             game.evaluate();
-            bot.passTurn();
+            this.passTurn();
         }
 
     }, 1000);
+}
+
+function generateRandom(min, max) {
+    return Math.floor(Math.random() * (max)) + min;
+}
+
+function getRandomFromArray(array) {
+    let index = generateRandom(0, array.length - 1);
+    return array[index];
 }
 
